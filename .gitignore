@@ -1,0 +1,8 @@
+# Directories:
+**/.vscode/*
+**/build/*
+**/__pycache__/*
+
+# Files:
+**/*.exe
+**/*.pyc
