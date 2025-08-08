@@ -1,5 +1,6 @@
 add_library(main_window STATIC
     h/MainWindow.h
+    h/MainMenuTextContent.h
     src/MainWindow.cpp
 )
 
