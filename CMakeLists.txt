@@ -14,6 +14,11 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
+set(PROJECT_APP_PATH "${CMAKE_CURRENT_SOURCE_DIR}/app")
+set(PROJECT_CORE_PATH "${PROJECT_APP_PATH}/core")
+set(PROJECT_WIDGETS_PATH "${PROJECT_APP_PATH}/widgets")
+set(PROJECT_DATABASE_PATH "${PROJECT_APP_PATH}/database")
+
 # ----------------------------------------
 # Compiler Specific Flags:
 # ----------------------------------------
