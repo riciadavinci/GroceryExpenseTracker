@@ -16,10 +16,17 @@ void MainWindow::createUi() {
     
     this->createActions();
     this->createMenus();
+    
+    m_add_grocery_bill_widget = new AddGroceryBillWidget(this);
+    m_search_grocery_bill_widget = new SearchGroceryBillWidget(this);
+    
+    m_central_widget = new QStackedWidget(this);
+    m_central_widget->addWidget(m_add_grocery_bill_widget);
+    m_central_widget->addWidget(m_search_grocery_bill_widget);
 
-    auto central_widget = new QStackedWidget();
-    this->setCentralWidget(central_widget);
-
+    m_central_widget->setCurrentWidget(m_search_grocery_bill_widget);
+    this->setCentralWidget(m_central_widget);
+    
     QString message = tr("Welcome to Grocery Expense Tracker");
     statusBar()->showMessage(message);
 }
@@ -79,14 +86,20 @@ void MainWindow::createMenus() {
 
 
 // Slots:
-
 void MainWindow::addGroceryBill() {
     qDebug() << "Add Grocery Bill clicked!\n";
+    if ((m_central_widget->currentWidget()) != m_add_grocery_bill_widget) {
+        m_add_grocery_bill_widget->clearFields();
+    }
+    m_central_widget->setCurrentWidget(m_add_grocery_bill_widget);
 }
 
 void MainWindow::searchGroceryBill() {
-    qDebug() << "Add Grocery Store clicked!\n";
-
+    qDebug() << "Search Grocery Store clicked!\n";
+    if ((m_central_widget->currentWidget()) != m_search_grocery_bill_widget) {
+        m_search_grocery_bill_widget->clearFields();
+    }
+    m_central_widget->setCurrentWidget(m_search_grocery_bill_widget);
 }
 
 void MainWindow::addGroceryStore() {

@@ -8,6 +8,10 @@
 #include <QAction>
 #include <QIcon>
 #include <QStackedWidget>
+#include <QVBoxLayout>
+
+#include "AddGroceryBillWidget.h"
+#include "SearchGroceryBillWidget.h"
 
 class MainWindow: public QMainWindow
 {
@@ -27,10 +31,6 @@ private slots:
 
 
 private:
-    void createUi();
-    void createActions();
-    void createMenus();
-
     // Menus:
     QMenu* m_add_menu;
     QMenu* m_search_menu;
@@ -43,5 +43,14 @@ private:
     QAction* m_add_item_category;
     QAction* m_search_item_category;
 
+    // Widgets:
+    QStackedWidget* m_central_widget;
+    AddGroceryBillWidget* m_add_grocery_bill_widget;
+    SearchGroceryBillWidget* m_search_grocery_bill_widget; 
+
+    // Private methods:
+    void createUi();
+    void createActions();
+    void createMenus();
 
 };
