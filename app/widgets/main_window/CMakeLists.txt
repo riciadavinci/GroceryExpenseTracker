@@ -8,6 +8,7 @@ target_include_directories(main_window
     PUBLIC 
         ${CMAKE_CURRENT_SOURCE_DIR}/h
         ${PROJECT_WIDGETS_PATH}/grocery_bill_widgets/h
+        ${PROJECT_WIDGETS_PATH}/dashboard_widgets/h
 )
 
 target_link_libraries(main_window
@@ -15,4 +16,5 @@ target_link_libraries(main_window
         Qt6::Core
         Qt6::Widgets
         grocery_bill_widgets
+        dashboard_widgets
 )
