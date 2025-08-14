@@ -2,5 +2,7 @@ CREATE TABLE IF NOT EXISTS grocery_stores (
     id TEXT PRIMARY KEY,
     name TEXT NOT NULL UNIQUE,
     type_id INTEGER,
+    created_on DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    modified_on DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (type_id) REFERENCES store_types(id)
 );
