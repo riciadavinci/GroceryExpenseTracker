@@ -3,7 +3,7 @@
 _**Tech Stack**_: C++17, Qt6 (core, widgets, sql), SQLite Database, CMake, MSVC 2022 compiler, Google-Test
 
 
-### Tasks (_board overview_):
+### Tasks (_broad overview_):
 - [ ] Define the Entities in detail:
     - [ ] GroceryBill
     - [ ] BillItem
@@ -48,13 +48,15 @@ _**Tech Stack**_: C++17, Qt6 (core, widgets, sql), SQLite Database, CMake, MSVC 
 - [ ] Future Tasks:
     - [ ] Improve design/visuals with Style-sheets/QML
     - [ ] Add doxygen documentation
+    - [ ] Add unit-tests (as well as integration and end-to-end tests, eventually)
     - [ ] Add code coverage
     - [ ] Store photo of a GroceryBill as a blob?
     - [ ] Move to REST-APIs (RestGroceryBillRepository, RestBillItemRepository, etc.)
          - [ ] Then keep the SQLite Database as local persistent cache (in case of no internet connection)
     - [ ] Maybe allow conversion of currencies??
-    - [ ] Show locations on a map in-case address field is present
+    - [ ] Show store locations on a map in-case address field is present
     - [ ] Import (extract) bill data from photo (OCR/OpenCV/Tesseract??)
+    - [ ] Add Nutrition Labels for BillItem objects??
 
 --- 
 
@@ -90,3 +92,210 @@ class BillItem
     QDateTime m_modified_on; // Meta-data
 };
 ```
+
+## Database Schema:
+
+<pre>
+[Category]
+  category_id (PK)
+  category_name
+
+[SubCategory]
+  subcategory_id (PK)
+  subcategory_name
+  category_id (FK → Category)
+
+[Unit]
+  unit_id (PK)
+  unit_shortform  (e.g., "Kg", "g", "L", "ml", "pcs")
+  unit_fullform   (e.g., "Kilograms", "Grams", "Liters", "Milliliters", "Pieces")
+
+[Product]
+  product_id (PK)
+  category_id (FK → Category)
+  subcategory_id (FK → SubCategory)
+  brand_name (nullable)
+  product_name (nullable)
+  variant (nullable)       -- e.g., "1.5% fat", "Boneless Breast", "Organic"
+  unit_id (FK → Unit)
+
+[GroceryBill]
+  bill_id (PK)
+  bill_date
+  store_id (FK → GroceryStore) -- optional
+
+[GroceryStore]
+  id (PK)
+  name TEXT,
+  // anything else??
+
+[Address]
+-- Address table
+CREATE TABLE address (
+    id TEXT PRIMARY KEY,           -- e.g., "AD-<UUID>"
+    internal_id INTEGER UNIQUE,    -- optional
+    store_id TEXT NOT NULL,
+    street TEXT,
+    city TEXT,
+    state TEXT,
+    zipcode TEXT,
+    country TEXT,
+    latitude REAL,
+    longitude REAL,
+    FOREIGN KEY(store_id) REFERENCES grocery_store(id) ON DELETE CASCADE
+);
+
+[BillItem]
+  bill_item_id (PK)
+  bill_id (FK → GroceryBill)
+  product_id (FK → Product)
+  unit_price        -- price per unit at purchase
+  discount_amount   -- in currency, nullable
+  discount_percent  -- nullable
+  quantity          -- number of units or weight/volume
+  count             -- number of identical packs (default 1)
+  total_price       -- final price after discount (precalculated)
+
+</pre>
+
+
+<pre>
+1️⃣ Meat & Poultry
+
+Sub-categories:
+
+Chicken
+
+Beef
+
+Pork
+
+Fish & Seafood
+
+Eggs
+
+Plant-based Proteins (optional, e.g., tofu if you want it here instead of premade)
+
+2️⃣ Dairy
+
+Sub-categories:
+
+Fresh Cheese (e.g., cream cheese, quark, ricotta)
+
+Hard Cheese (e.g., cheddar, gouda)
+
+Milk & Milk Alternatives (e.g., cow milk, soy milk)
+
+Yogurt & Cultured Dairy
+
+Butter & Ghee
+
+3️⃣ Grains
+
+Sub-categories:
+
+Flours (rice flour, wheat flour, corn flour)
+
+Cereals & Muesli (breakfast cereals, granola, muesli)
+
+Flatbreads & Wraps (tortillas, protein wraps, lavash)
+
+Rice & Pasta (uncooked rice, pasta, noodles)
+
+4️⃣ Premade, Instant, & Frozen
+
+Sub-categories:
+
+Ready Meals & Frozen Foods
+
+Frozen Vegetables & Fruits
+
+Convenience Foods (instant noodles, sauces, etc.)
+
+5️⃣ Snacks & Junk
+
+Sub-categories:
+
+Chips & Crisps
+
+Sweets & Chocolates
+
+Biscuits & Cookies
+
+Nuts & Seeds (if consumed as snacks)
+
+6️⃣ Produce
+
+Sub-categories:
+
+Fruits
+
+Vegetables
+
+Herbs & Fresh Spices
+
+7️⃣ Drinks
+
+Sub-categories:
+
+Water
+
+Juices & Smoothies
+
+Soft Drinks
+
+Coffee & Tea
+
+Alcoholic Beverages (optional if you want to track)
+
+8️⃣ Bakery & Baked Goods
+
+Sub-categories:
+
+Bread
+
+Pastries & Cakes
+
+Buns & Rolls
+
+9️⃣ Condiments & Sauces
+
+Sub-categories:
+
+Cooking Sauces (ketchup, mustard, mayonnaise)
+
+Dressings
+
+Vinegars
+
+10️⃣ Herbs & Spices
+
+Sub-categories:
+
+Dried Herbs (oregano, thyme, etc.)
+
+Ground Spices (cumin, cinnamon, etc.)
+
+Salt & Pepper
+
+11️⃣ Oils & Fats
+
+Sub-categories:
+
+Cooking Oils (olive, sunflower, canola)
+
+Butter & Margarine (if not grouped under Dairy)
+
+Specialty Fats (coconut oil, ghee)
+
+12️⃣ Miscellaneous
+
+Sub-categories:
+
+Household Items (paper towels, cleaning)
+
+Personal Care (optional, if you want to track non-food items)
+
+Others
+
+</pre>
