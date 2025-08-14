@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS units (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    shortform TEXT NOT NULL,
+    fullform TEXT NOT NULL 
+);
