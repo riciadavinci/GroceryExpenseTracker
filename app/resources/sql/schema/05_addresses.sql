@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS addresses (
     id TEXT PRIMARY KEY,
-    store_id TEXT,
+    store_id TEXT NOT NULL,
     street_name TEXT,
     house_number TEXT,
     city TEXT,
