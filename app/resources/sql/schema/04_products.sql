@@ -3,9 +3,10 @@ CREATE TABLE IF NOT EXISTS products (
     category_id INT NOT NULL,
     sub_category_id INT NOT NULL,
     unit_id INT NOT NULL,
-    product_name TEXT,
-    variant TEXT
+    product_name TEXT NOT NULL,
+    variant TEXT,
     brand_name TEXT,
+    nutri_score TEXT CHECK(nutri_score IN ('A', 'B', 'C', 'D', 'E')),
     created_on DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     modified_on DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (category_id) REFERENCES categories(id),
