@@ -1,0 +1,6 @@
+INSERT OR IGNORE INTO addresses (id, store_id, street_name, house_number, city, zipcode, state, country, latitude, longitude) VALUES 
+    ('AD-bbae1127-913d-4540-bb7d-80ba6b804778', 'GS-ceb7e0e1-eda9-4037-8001-f6f4191cbf02', 'Henkestraße', '92', 'Erlangen', '91052', 'Bayern', 'Germany', 49.59362337576424, 11.018790670254393),
+    ('AD-0f5d3116-bb49-4e16-9407-abde8f554453', 'GS-ceb7e0e1-eda9-4037-8001-f6f4191cbf02', 'Henkestraße', '5', 'Erlangen', '91054', 'Bayern', 'Germany', 49.5939974405429, 11.006546530816863),
+    ('AD-612c4ca8-050b-41b7-9fce-c61fc518b3c1', 'GS-a7b291ba-d0b4-4f02-b67f-cf26b6400e59', 'Stubenlohstraße', '1', 'Erlangen', '91052', 'Bayern', 'Germany', 49.59670292222015, 11.015956528741706),
+    ('AD-866db00a-25dc-4e70-b411-90d77055917e', 'GS-ff4585be-d430-4428-bc8f-abf91f0c9587', 'Nägelsbachstraße', '26', 'Erlangen', '91052', 'Bayern', 'Germany', 49.590848941399116, 11.005237588734426),
+    ('AD-76165a51-b6b7-4fd7-bd5e-0cdcdab37e62', 'GS-6c2bfe86-b4a8-4d09-b237-7504fe014f64', 'Carl-Thiersch-Straße', 'Allee am Röthelheimpark 4', 'Erlangen', '91052', 'Bayern', 'Germany', 49.59398351556905, 11.025962069407864);
