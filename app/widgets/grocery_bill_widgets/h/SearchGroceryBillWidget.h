@@ -7,6 +7,8 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QListWidget>
+#include <QVector>
+#include <QDebug>
 
 class SearchGroceryBillWidget: public QWidget
 {
@@ -15,6 +17,10 @@ class SearchGroceryBillWidget: public QWidget
 public:
     SearchGroceryBillWidget(QWidget* parent);
     void clearFields();
+    void searchData();
+
+signals:
+    void testSignal();
 
 private:
     // Members:
@@ -24,4 +30,5 @@ private:
     QListWidget* m_search_results_list;
     
     void createUi();
+    void test();
 };
