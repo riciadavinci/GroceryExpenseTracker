@@ -1,0 +1,2 @@
+INSERT OR IGNORE INTO products (id, category_id, sub_category_id, unit_id, product_name, variant, brand_name, nutri_score) VALUES 
+    (:product_id, :category_id, :sub_category_id, :unit_id, :product_name, :variant, :brand_name, ;nutri_score);
