@@ -1,0 +1,51 @@
+{
+    "migrations": [],
+    "queries": [
+        "units/select_all.sql",
+        "units/select_by_id.sql",
+        "categories/select_all.sql",
+        "categories/select_by_id.sql",
+        "sub_categories/select_all.sql",
+        "sub_categories/select_by_id.sql",
+        "products/delete.sql",
+        "products/insert.sql",
+        "products/select_by_id.sql",
+        "products/select_by_name.sql",
+        "products/update.sql",
+        "store_types/",
+        "grocery_stores/",
+        "addresses/insert.sql",
+        "addresses/delete.sql",
+        "addresses/select_by_grocery_store_id.sql",
+        "addresses/select_by_id.sql",
+        "addresses/update.sql",
+        "currencies/",
+        "grocery_bills/",
+        "bill_items/",
+        "pfand_transactions/"
+    ],
+    "schema": [
+        "01_units.sql",
+        "02_categories.sql",
+        "03_sub_categories.sql",
+        "04_products.sql",
+        "05_addresses.sql",
+        "06_store_types.sql",
+        "07_grocery_stores.sql",
+        "08_currencies.sql",
+        "09_grocery_bills.sql",
+        "10_bill_items.sql",
+        "11_pfand_transactions.sql"
+    ],
+    "seeds": [
+        "01_units.sql",
+        "02_categories.sql",
+        "03_sub_categories.sql",
+        "04_products.sql",
+        "05_addresses.sql",
+        "06_store_types.sql",
+        "07_grocery_stores.sql",
+        "08_currencies.sql"
+    ],
+    "views": []
+}
